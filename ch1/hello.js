@@ -17,12 +17,21 @@ primes["aa"] = 11
 console.log(primes.length)
 
 
-async function getInputFromStdin(){
-    process.stdin.setEncoding('utf-8')
+// async function getInputFromStdin(){
+//     process.stdin.setEncoding('utf-8')
 
-    for await(let chunk of process.stdin){
-        console.log("line:***", chunk)
-    }
+//     for await(let chunk of process.stdin){
+//         console.log("line:***", chunk)
+//     }
+// }
+
+// getInputFromStdin()
+
+
+function f(o){
+    if(o == undefined)  debugger
+
+    console.log("test debugger~~~~~~~~~~~~~~~~")
 }
 
-getInputFromStdin()
+f()
