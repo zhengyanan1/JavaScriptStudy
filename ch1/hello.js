@@ -1,7 +1,11 @@
 // const http = require('http')
-
+// "use strict"
 
 console.log("Hello World!")
+
+var x = 123
+console.log(globalThis.x)
+delete globalThis.x
 
 let book = {
     topic: "JaveScript",
