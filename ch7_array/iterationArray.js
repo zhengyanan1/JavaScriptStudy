@@ -46,3 +46,7 @@ console.log(typeof nums)
 for(let o of nums){
     console.log(o)
 }
+
+
+let c = []
+console.log(Array.from(c))
