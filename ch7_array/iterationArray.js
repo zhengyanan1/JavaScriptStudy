@@ -36,3 +36,13 @@ console.log(a.sort())
 console.log(a.sort((a, b)=> b - a))
 
 console.log(a.reverse())
+
+
+let nums = [[1, 0], 2, 4]
+console.log(nums.join("_"))
+console.log(nums.toString().split(",2,"))
+console.log(typeof nums)
+
+for(let o of nums){
+    console.log(o)
+}
