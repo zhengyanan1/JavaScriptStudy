@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <div style="width: 500px;height: 500px;">
+            <div style="height: 40px;">
+                <div style="width: 100px;background-color:red">a</div>
+                <div id="blue" style="width: 100%;background-color:green" onclick="printWidth()">
+                    <div style="width: 100%;">233</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function printWidth(){  
+                let element = document.getElementById("blue")
+                console.warn(window.getComputedStyle(element, null).getPropertyValue("width"))
+            }
+
+        </script>
+    </body>
+</html>
