@@ -18,3 +18,26 @@ for(let i = 0, len = nums.length; i < len; i++){
     console.log(nums[i])
 }
 // console.log(i, len)  // i is not defined!!!
+
+
+
+let GetBulletData = (function(){
+    let _NUM = 1
+    return function(){ return "测试弹幕" + _NUM++}
+}());
+
+
+console.log(GetBulletData())
+console.log(GetBulletData())
+console.log(GetBulletData())
+
+
+let myMap = new Map()
+myMap.set(1, "num 1")
+myMap.set("1", "string 1")
+
+console.log(myMap)
+
+
+let ss = "0.3808594"
+console.log(parseFloat(ss))
