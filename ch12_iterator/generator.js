@@ -14,3 +14,16 @@ function fibonacci(n){
 }
 
 console.log(fibonacci(20))
+
+
+function* sequence(...iterables){
+    for(let iterable of iterables){
+        for(let item of iterable){
+            yield item
+        }
+    }
+}
+
+console.log([...sequence("111", "abc")])
+
+console.log([1, 2].forEach((v) =>{yield v}))
