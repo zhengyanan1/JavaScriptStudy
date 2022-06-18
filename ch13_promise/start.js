@@ -12,9 +12,10 @@ async function GetNameFromNet(){
 // throw new Error("main error")
 
 // method1: catch 中捕获异常...
+let _err = new Error("postion error")
 GetNameFromNet().then(
     (v)=>{
-        console.warn(v)
+        console.warn(v, "---")
         throw new Error("then error")
     }).catch(
     ((e)=>{
