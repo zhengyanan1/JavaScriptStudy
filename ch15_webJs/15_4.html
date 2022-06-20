@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>15 - 4</title>
+        <link id="red-theme" rel="stylesheet" href="./red.css"><link>
+        <!-- <link id="green-theme" rel="stylesheet" href="./green.css"></link> -->
+        <style>
+            #clock{
+                font: bold 24px sans-serif;
+                background-color: #ddf;
+                padding: 15px;
+                border: solid black 5px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body >
+        <h1>Digital Clock</h1>
+        <div id="wrapper">
+        <span id="clock">2223</span>
+        </div>
+        <script>
+            let myWrapper = document.getElementById("wrapper")
+            myWrapper.addEventListener("click", function(event){
+                console.log("capture---", event.cancelable)
+
+                let computedStyle = window.getComputedStyle(myWrapper)
+                console.log(computedStyle.height, computedStyle.width)
+
+                // toggleTheme()
+                setTheme("green")
+            })
+
+            function toggleTheme(){
+                let redTheme = document.querySelector("#red-theme");
+                let greenTheme = document.querySelector("#green-theme")
+                console.log(redTheme.disabled, greenTheme.disabled, ":::")
+
+                if(redTheme.disabled){
+                    redTheme.disabled = false
+                    greenTheme.disabled = true
+                }
+                else{
+                    redTheme.disabled = true
+                    greenTheme.disabled = false
+                }
+            }
+
+            function setTheme(name){
+                let link = document.createElement("link")
+                link.id = "theme"
+                link.rel = "stylesheet"
+                link.href = `./${name}.css`
+
+                let currentTheme = document.querySelector("#red-theme")
+
+                if(currentTheme){
+                    currentTheme.replaceWith(link)
+                }
+                else{
+                    document.head.append(link)
+                }
+                
+
+            }
+
+        </script>
+    </body>
+    <script>
+    </script>
+</html>

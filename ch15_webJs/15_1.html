@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Digital Clock</title>
+        <title>15 - 1</title>
         <style>
             #clock{
                 font: bold 24px sans-serif;
@@ -11,24 +11,18 @@
                 border-radius: 10px;
             }
         </style>
-        <script defer src="./digital_clock.js"></script>
     </head>
     <body>
         <h1>Digital Clock</h1>
         <span id="clock"></span>
-        <!-- <script>
-            function displayTime(){
-                let clock = document.querySelector("#clock")
-                let now = new Date()
-                clock.textContent = now.toLocaleTimeString()
-            }
-
-            displayTime()
-            setInterval(displayTime, 1000);
-        </script> -->
+        <h1></h1>
+        <script>
+            let name = new URL(document.URL).searchParams.get("name")
+            document.querySelector('h1').innerHTML = "Hello " + name
+            console.log(name)
+        </script>
         <!-- <script src="./digital_clock.js"></script> -->
     </body>
     <script>
-        console.log(document.readyState)
     </script>
 </html>

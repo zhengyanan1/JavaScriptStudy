@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>15 - 2</title>
+        <style>
+            #clock{
+                font: bold 24px sans-serif;
+                background-color: #ddf;
+                padding: 15px;
+                border: solid black 5px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body >
+        <h1>Digital Clock</h1>
+        <div id="wrapper">
+        <span id="clock">2223</span>
+        </div>
+        <script>
+            let mySpan = document.getElementById("clock")
+            mySpan.addEventListener("click", (event)=>{
+                console.log(event)
+                event.stopPropagation()
+                // console.log(event.cancelable)
+            })
+            // mySpan.addEventListener("click", function(event){
+            //     console.log(this)
+            //     console.log(event)
+            // })
+
+            let myWrapper = document.getElementById("wrapper")
+            myWrapper.addEventListener("click", function(event){
+                console.log("capture---", event.cancelable)
+
+
+                event.stopPropagation()
+                console.log(myWrapper.textContent)
+                // myWrapper.insertAdjacentHTML()
+                console.log(myWrapper.innerHTML, ":", myWrapper.outerHTML)
+            }, true)
+        </script>
+    </body>
+    <script>
+    </script>
+</html>
