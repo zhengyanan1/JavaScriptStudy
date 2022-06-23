@@ -40,6 +40,14 @@
             c.moveTo(300, 100)
             c.lineTo(300, 200)
             c.stroke()
+
+            console.warn("location:", window.location)
+            let url = new URL(window.location)
+            let query = url.searchParams.get('q')
+            let numResults = parseInt(url.searchParams.get("n") || "10")
+            console.log(query, numResults)
+            window.location = "15.7svg.html?q=lll&name=harden&n=9"
+
             
         </script>
     </body>
