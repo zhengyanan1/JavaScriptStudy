@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^9.3.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14"
   }
 }
