@@ -12,22 +12,40 @@
             function fetchBaidu(){
                 let authHeadlers = new Headers()
                 // authHeadlers.set("")
-
-                // fetch("https://www.baidu.com", authHeadlers)
+                // fetch("http://www.baidu.com", authHeadlers)
                 //     .then(respone => {
                 //         console.log("999")
                 //     })
                 //     .catch(errr=>{
                 //         console.log(errr)
                 //     })
-                fetch("./bg.png")
-                    .then(response =>{
-                        console.log(response)
-                    })
+                // fetch("./bg.png")
+                //     .then(response =>{
+                //         console.log(response)
+                //     })
+
+                // 1. jsonp
+                // fetch("http://127.0.0.1:8000?callback=theCallback")
+                //     .then(response =>{
+                //         console.log(response)
+                //     })
+                //     .catch(error=>{
+                //         console.log("error:", error)
+                //     })
+                const script = document.createElement("script");
+                const url = `http://127.0.0.1:8000?callback=theCallback`;
+                script.src = url;
+                document.getElementsByTagName("head")[0].appendChild(script);
             }
-            
-            console.log(localStorage.username)
-            
+
+            function theCallback(data){
+                let object = JSON.parse(data)
+                let _body = document.getElementsByTagName('body')[0]
+                let div = document.createElement('div')
+                div.textContent = object.name
+                _body.appendChild(div)
+                console.log(object)
+            }
         </script>
     </body>
 </html>
