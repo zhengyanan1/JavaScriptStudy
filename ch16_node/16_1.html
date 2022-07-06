@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>16 - 1</title>
+        <style>
+            #clock{
+                font: bold 24px sans-serif;
+                background-color: #ddf;
+                padding: 15px;
+                border: solid black 5px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Digital Clock</h1>
+        <span id="clock"></span>
+        <h1></h1>
+        <script>
+            let name = new URL(document.URL).searchParams.get("name")
+            document.querySelector('h1').innerHTML = "Hello " + name
+            console.log(name)
+        </script>
+        <!-- <script src="./digital_clock.js"></script> -->
+    </body>
+    <script>
+    </script>
+</html>
