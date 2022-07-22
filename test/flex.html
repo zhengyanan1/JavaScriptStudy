@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex {
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #9a9a9a;
+            display: flex;
+            flex-wrap: wrap;
+            height: 400px;
+            /* align-items: center; */
+            /* align-content: center; */
+        }
+
+        .flex>div {
+            width: 40px;
+            /* margin: auto; */
+            /* flex-shrink: 0; */
+        }
+
+        .i1 {
+            background-color: #ffb685;
+        }
+
+        .i2 {
+            background-color: #fff7b1;
+        }
+
+        .i3 {
+            background-color: #b1ffc8;
+        }
+
+        .i4 {
+            background-color: #b1ccff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='flex'>
+        <div class='i1'>1</div>
+        <div class='i2'>2</div>
+        <div class='i3'>3</div>
+        <div class='i4'>4</div>
+        <input type="text" oninput="onInput(event)" onchange="onChange(event)">
+    </div>
+    <script>
+        function onInput(event){
+            console.log("onInput:", event)
+        }
+
+        function onChange(event){
+            console.log("onChange:", event)
+        }
+    </script>
+</body>
+
+</html>

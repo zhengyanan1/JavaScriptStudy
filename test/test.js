@@ -41,3 +41,23 @@ console.log(myMap)
 
 let ss = "0.3808594"
 console.log(parseFloat(ss))
+
+
+let num = 2.6 * 17
+console.log("value: ", num)
+
+
+console.log(Math.sin(Math.PI / 2))
+
+
+class Name{
+    name = "default"
+
+    constructor(){
+        console.log(this.name)
+    }
+}
+
+new Name()
+
+
