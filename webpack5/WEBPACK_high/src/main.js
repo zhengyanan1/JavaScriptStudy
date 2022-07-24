@@ -1,5 +1,6 @@
 import count from "./js/count";
 import sum from "./js/sum";
+import { mul} from "./js/math"
 
 import "./css/iconfont.css"
 import "./css/index.css"

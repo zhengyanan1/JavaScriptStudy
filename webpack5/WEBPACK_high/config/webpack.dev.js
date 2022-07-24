@@ -1,6 +1,10 @@
 const path = require("path")
+const path = require("path")
+
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const threads = os.cpus().length // 核心数
 
 module.exports = {
     // 入口
@@ -77,11 +81,22 @@ module.exports = {
                     test: /\.js$/,
                     // exclude: /node_modules/,  // 排出node_modules下的文件，其他文件都处理
                     include: path.resolve(__dirname, "../src"), //只处理src下的文件，其他文件不处理
-                    loader: 'babel-loader',
-                    options: {
-                        cacheDirectory: true,  // 开启babel缓存
-                        cacheCompression: false, //关闭缓存文件压缩
-                    }
+                    use:[
+                        {
+                            loader:'thread-loader', //开启多进程
+                            options:{
+                                works: threads,  //进程数量
+                            }
+                        },
+                        {
+                            loader: 'babel-loader', 
+                            options: {
+                                cacheDirectory: true,  // 开启babel缓存
+                                cacheCompression: false, //关闭缓存文件压缩
+                                plugins: ["@babel/plugin-transform-runtime"], // 减少代码体积,
+                            }
+                        }
+                    ]
                 }
             ]
         }]
@@ -90,7 +105,8 @@ module.exports = {
     plugins: [
         new ESLintPlugin({
             context: path.resolve(__dirname, '../src'),
-            exclude: "node_modules"   // 默认值
+            exclude: "node_modules",   // 默认值,
+            threads,
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html")

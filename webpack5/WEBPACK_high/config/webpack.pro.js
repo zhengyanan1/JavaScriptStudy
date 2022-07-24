@@ -1,8 +1,14 @@
 const path = require("path")
+const os = require("os")
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const TerserWebpackPlugin = require("terser-webpack-plugin")
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+
+
+const threads = os.cpus().length // 核心数
 
 // 获取处理样式的loader...
 function getStyleLoader(pre){
@@ -78,11 +84,22 @@ module.exports = {
                 test: /\.js$/,
                 // exclude: /node_modules/,  // 排出node_modules下的文件，其他文件都处理
                 include: path.resolve(__dirname, "../src"), //只处理src下的文件，其他文件不处理
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true,  // 开启babel缓存
-                    cacheCompression: false, //关闭缓存文件压缩
-                }
+                use:[
+                    {
+                        loader:'thread-loader', //开启多进程
+                        options:{
+                            works: threads,  //进程数量
+                        }
+                    },
+                    {
+                        loader: 'babel-loader', 
+                        options: {
+                            cacheDirectory: true,  // 开启babel缓存
+                            cacheCompression: false, //关闭缓存文件压缩
+                            plugins: ["@babel/plugin-transform-runtime"], // 减少代码体积
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -92,7 +109,8 @@ module.exports = {
             context: path.resolve(__dirname, '../src'),
             exclude: "node_modules",   // 默认值,
             cache: true,
-            cacheLocation: path.resolve(__dirname, "../node_modules/.cache/eslintcache")
+            cacheLocation: path.resolve(__dirname, "../node_modules/.cache/eslintcache"),
+            threads,
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html")
@@ -100,8 +118,48 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'static/css/main.css'
         }),
-        new CssMinimizerPlugin()
+        // new CssMinimizerPlugin(),
+        // new TerserWebpackPlugin({
+        //     parallel: threads
+        // })
     ],
+
+    optimization: {
+        minimizer: [
+            new CssMinimizerPlugin(),
+            new TerserWebpackPlugin({
+                parallel: threads
+            }),
+            // 压缩图片
+            new ImageMinimizerPlugin({
+                minimizer: {
+                implementation: ImageMinimizerPlugin.imageminGenerate,
+                options: {
+                    plugins: [
+                    ["gifsicle", { interlaced: true }],
+                    ["jpegtran", { progressive: true }],
+                    ["optipng", { optimizationLevel: 5 }],
+                    [
+                        "svgo",
+                        {
+                        plugins: [
+                            "preset-default",
+                            "prefixIds",
+                            {
+                            name: "sortAttrs",
+                            params: {
+                                xmlnsOrder: "alphabetical",
+                            },
+                            },
+                        ],
+                        },
+                    ],
+                    ],
+                },
+                },
+            }),
+        ],
+    },
 
     // 模式
     mode: 'production',
