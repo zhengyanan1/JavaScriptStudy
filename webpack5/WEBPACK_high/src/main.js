@@ -1,3 +1,7 @@
+// 1. 完整引入
+// import "core-js"
+// 2. 按需加载
+// import "core-js/es/promise"
 import count from "./js/count";
 import sum from "./js/sum";
 
@@ -24,3 +28,12 @@ if(module.hot){
     module.hot.accept("./js/count")
     module.hot.accept("./js/sum")
 }
+
+new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve()
+    }, 1000)
+})
+
+const arr = [1, 2, 3, 4, 5]
+console.log(arr.includes(1))
