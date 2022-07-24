@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserWebpackPlugin = require("terser-webpack-plugin")
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 
 const threads = os.cpus().length // 核心数
 
@@ -126,6 +126,11 @@ module.exports = {
         // new TerserWebpackPlugin({
         //     parallel: threads
         // })
+        new PreloadWebpackPlugin({
+            // rel: 'preload',
+            // as: 'script'
+            rel: 'prefetch'
+        }),
     ],
 
     optimization: {
