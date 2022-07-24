@@ -1,6 +1,5 @@
 import count from "./js/count";
 import sum from "./js/sum";
-import { mul} from "./js/math"
 
 import "./css/iconfont.css"
 import "./css/index.css"
@@ -11,6 +10,13 @@ import "./stylus/index.styl"
 
 console.log(count(1, 23))
 console.log(sum(1, 2, 3, 4, 5, 6))
+
+document.getElementById("btn").onclick = function(){
+    import(/* webpackChunkName: "math" */"./js/math")
+        .then(({mul}) =>{
+            console.log(mul(3, 3))
+        })
+}
 
 
 if(module.hot){

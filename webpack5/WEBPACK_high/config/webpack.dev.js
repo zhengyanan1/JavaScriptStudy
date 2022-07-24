@@ -1,5 +1,5 @@
 const path = require("path")
-const path = require("path")
+const os = require('os')
 
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,7 +13,10 @@ module.exports = {
     output: {
         path: undefined,
         // 入口文件打包输出的文件名
-        filename: 'static/js/main.js',
+        filename: 'static/js/[name].js',
+        chunkFilename:'static/js/[name].chunk.js',
+        // 图片、字体等通过type:asset处理资源命名方式...
+        assetModuleFilename: "static/media/[hash:10][ext][query]",
         clean: true,
     },
     // 加载器
@@ -66,16 +69,16 @@ module.exports = {
                             maxSize: 10 * 1024 // 10kb
                         }
                     },
-                    generator: {
-                        filename: 'static/images/[hash:10][ext][query]'
-                    }
+                    // generator: {
+                    //     filename: 'static/images/[hash:10][ext][query]'
+                    // }
                 },
                 {
                     test: /\.(ttf|woff2?|mp3|mp4|avi)$/,
                     type: 'asset/resource',
-                    generator: {
-                        filename: 'static/media/[hash:10][ext][query]'
-                    }
+                    // generator: {
+                    //     filename: 'static/media/[hash:10][ext][query]'
+                    // }
                 },
                 {
                     test: /\.js$/,
@@ -110,7 +113,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html")
-        })
+        }),
     ],
 
     devServer:{
