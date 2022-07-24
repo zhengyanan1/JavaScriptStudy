@@ -36,8 +36,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "../dist"),//绝对路径
         // 入口文件打包输出的文件名
-        filename: 'static/js/[name].js',
-        chunkFilename:'static/js/[name].chunk.js',
+        filename: 'static/js/[name].[contenthash:8].js',
+        chunkFilename:'static/js/[name].chunk.[contenthash:8].js',
         // 图片、字体等通过type:asset处理资源命名方式...
         assetModuleFilename: "static/media/[hash:10][ext][query]",
         clean: true,
@@ -119,8 +119,8 @@ module.exports = {
             template: path.resolve(__dirname, "../public/index.html")
         }),
         new MiniCssExtractPlugin({
-            filename: 'static/css/[name].css',
-            chunkFilename: "static/css/[name].chunk.css",
+            filename: 'static/css/[name].[contenthash:8].css',
+            chunkFilename: "static/css/[name].chunk.[contenthash:8].css",
         }),
         // new CssMinimizerPlugin(),
         // new TerserWebpackPlugin({
@@ -173,6 +173,9 @@ module.exports = {
         splitChunks: {
             chunks: "all", // 对所有模块都进行分割
             // 其他用默认值
+        },
+        runtimeChunk: {
+            name: entrypoint => `runtime~${entrypoint.name}.js`,
         }
     },
 
