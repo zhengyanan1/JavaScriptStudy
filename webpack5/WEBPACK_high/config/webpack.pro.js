@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserWebpackPlugin = require("terser-webpack-plugin")
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const threads = os.cpus().length // 核心数
 
@@ -130,6 +131,12 @@ module.exports = {
             // rel: 'preload',
             // as: 'script'
             rel: 'prefetch'
+        }),
+        new WorkboxPlugin.GenerateSW({
+            // 这些选项帮助快速启用 ServiceWorkers
+            // 不允许遗留任何“旧的” ServiceWorkers
+            clientsClaim: true,
+            skipWaiting: true,
         }),
     ],
 
