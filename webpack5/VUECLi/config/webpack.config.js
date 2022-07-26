@@ -10,10 +10,15 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 const { VueLoaderPlugin } = require('vue-loader')
 const {DefinePlugin} = require("webpack")
 
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+
+const isProduction = process.env.NODE_ENV === "production"
 
 const getStyleLoaders = (pre)=>{
     return [
-        MiniCssExtractPlugin.loader,
+        isProduction ?  MiniCssExtractPlugin.loader : "vue-style-loader",
         "css-loader",
         {
             // 处理兼容性问题，配合package.json中的browserslist来指定兼容性
@@ -26,16 +31,22 @@ const getStyleLoaders = (pre)=>{
                 }
             }
         },
-        pre
+        pre && {
+            loader: pre,
+            options: pre === "sass-loader" ? 
+            {
+                additionalData: `@use "@/styles/element/index.scss" as *;`,
+            } : {}
+        }
     ].filter(Boolean)
 }
 
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, "../dist"),
-        filename: 'static/js/[name].[contenthash:10].js',
-        chunkFilename: 'static/js/[name].chunk.[contenthash:10].js',
+        path: isProduction ?  path.resolve(__dirname, "../dist") : undefined,
+        filename:  isProduction ? 'static/js/[name].[contenthash:10].js' : 'static/js/[name].js',
+        chunkFilename: isProduction ? 'static/js/[name].chunk.[contenthash:10].js' : 'static/js/[name].chunk.js',
         assetModuleFilename: 'statuc/media/[hash:10][ext][query]',
         clean: true,
     },
@@ -86,7 +97,11 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options:{
+                    // 开启缓存
+                    cacheDirectory: path.resolve(__dirname, "../node_modules/.cache/vue-loader")
+                }
             }
         ]
     },
@@ -101,11 +116,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html")
         }),
-        new MiniCssExtractPlugin({
+        isProduction && new MiniCssExtractPlugin({
             filename: 'static/css/[name].[contenthash:10].css',
             chunkFilename: 'static/css/[name].chunk.[contenthash:10].css'
         }),
-        new CopyWebpackPlugin({
+        isProduction && new CopyWebpackPlugin({
             patterns: [
                 { 
                     from: path.resolve(__dirname, "../public"), 
@@ -123,18 +138,46 @@ module.exports = {
         new DefinePlugin({
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: false
-        })
-    ],
+        }),
+        // 按需加载elementplus
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+            }),
+            // 自自定义主题
+        Components({
+            resolvers: [ElementPlusResolver({
+                importStyle: 'sass'
+            })],
+        }),
+    ].filter(Boolean),
 
-    mode:'production',
-    devtool: 'source-map',
+    mode: isProduction ? 'production': 'development',
+    devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
     optimization:{
         splitChunks:{
             chunks: 'all',
+            cacheGroups:{
+                vue:{
+                    test: /[\\/]node_modules[\\/]vue(.*)?[\\/]/,
+                    name: 'vue-chunk',
+                    priority: 40,
+                },
+                elementPlus: {
+                    test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+                    name: 'elementPlus-chunk',
+                    priority: 30,
+                },
+                libs: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'libs-chunk',
+                    priority: 20,
+                }
+            }
         },
         runtimeChunk:{
             name: entrypoint => `runtime~${entrypoint.name}.js`,
         },
+        minimize: isProduction,
         minimizer:[
             new CssMinimizerWebpackPlugin(),
             new TerserWebpackPlugin(),
@@ -170,5 +213,19 @@ module.exports = {
 //  webpack解析模块加载选项
     resolve: {
         extensions: [".vue", ".js", ".json"],
+        // 路径别名
+        alias:{
+            '@': path.resolve(__dirname, "../src")
+        }
     },
+
+    devServer:{
+        host: 'localhost',
+        port: 3001,
+        open: true,
+        hot: true,
+        historyApiFallback: true,
+    },
+
+    performance: false,
 }

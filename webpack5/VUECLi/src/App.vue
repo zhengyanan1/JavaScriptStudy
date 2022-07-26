@@ -1,5 +1,6 @@
 <template>
     <h1>Hello App</h1>
+    <el-button type="danger">Button</el-button>
     <ul>
         <li>
             <router-link to="/home">Home</router-link>
@@ -12,8 +13,13 @@
 </template>
 
 <script>
+import {ElButton} from "element-plus"
+
 export default {
     name: 'App',
+    components:{
+        ElButton
+    }
 }
 </script>
 
