@@ -26,7 +26,16 @@ const getStyleLoaders = (pre)=>{
                 }
             }
         },
-        pre
+        pre && {
+            loader: pre,
+            options: pre === 'less-loader' ? {
+                // antd自定义主题
+                lessOptions: {
+                    modifyVars: { '@primary-color': '#1DA57A' },
+                    javascriptEnabled: true,
+                },
+            } : {}
+        }
     ].filter(Boolean)
 }
 
@@ -124,6 +133,27 @@ module.exports = {
     optimization:{
         splitChunks:{
             chunks: 'all',
+            cacheGroups:{
+                // react react-dom react-router-dom 一起打包成一个js文件
+                react:{
+                    test: /node_modules[\\/]react(.*)?[\\/]/,
+                    name: 'chunk-react',
+                    priority: 40,
+                },
+                // antd单独打包
+                antd:{
+                    test: /node_modules[\\/]antd[\\/]/,
+                    name: 'chunk-antd',
+                    priority: 30,
+                },
+                // 剩下的node_modules单独打包
+                libs:{
+                    test: /node_modules[\\/]/,
+                    name: 'chunk-libs',
+                    priority: 20,
+                }
+
+            }
         },
         runtimeChunk:{
             name: entrypoint => `runtime~${entrypoint.name}.js`,
@@ -173,5 +203,7 @@ module.exports = {
         open: true,
         hot: true,
         historyApiFallback: true,
-    }
+    },
+
+    performance: false, // 关闭性能分析，提升打包速度
 }
