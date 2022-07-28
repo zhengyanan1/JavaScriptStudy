@@ -17,9 +17,15 @@ module.exports = {
             // }
             {
                 test: /\.js$/,
+                // use:[
+                //     './loaders/demo/test1',
+                //     './loaders/demo/test2',
+                // ]
+                // loader: './loaders/demo/test3'
                 use:[
-                    './loaders/demo/test1',
-                    './loaders/demo/test2',
+                    "./loaders/demo/test4",
+                    "./loaders/demo/test5",
+                    "./loaders/demo/test6",
                 ]
             },
         ]
