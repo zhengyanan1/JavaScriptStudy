@@ -22,11 +22,12 @@ module.exports = {
                 //     './loaders/demo/test2',
                 // ]
                 // loader: './loaders/demo/test3'
-                use:[
-                    "./loaders/demo/test4",
-                    "./loaders/demo/test5",
-                    "./loaders/demo/test6",
-                ]
+                // use:[
+                //     "./loaders/demo/test4",
+                //     "./loaders/demo/test5",
+                //     "./loaders/demo/test6",
+                // ]
+                loader: "./loaders/clean-log-loader",
             },
         ]
     },
