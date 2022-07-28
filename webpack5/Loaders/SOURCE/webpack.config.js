@@ -29,6 +29,20 @@ module.exports = {
                 // ]
                 loader: "./loaders/clean-log-loader",
             },
+            {
+                test: /\.js$/,
+                loader: './loaders/banner-loader',
+                options:{
+                    author: "hardenX",
+                }
+            },
+            {
+                test: /\.js$/,
+                loader: './loaders/babel-loader',
+                options:{
+                    presets:["@babel/preset-env"]
+                }
+            }
         ]
     },
     plugins:[
