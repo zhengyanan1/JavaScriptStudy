@@ -7,7 +7,7 @@ module.exports = function(content){
         "[hash].[ext][query]",
         {content});
     interpolatedName = `images/${interpolatedName}`
-    console.log("---", interpolatedName)
+    // console.log("---", interpolatedName)
 
     // 2 把文件输出出去
     this.emitFile(interpolatedName, content)
