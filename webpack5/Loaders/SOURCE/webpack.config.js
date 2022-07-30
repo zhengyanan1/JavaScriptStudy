@@ -42,6 +42,16 @@ module.exports = {
                 options:{
                     presets:["@babel/preset-env"]
                 }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loader: "./loaders/file-loader",
+                type: 'javascript/auto'  // 阻止webpack默认处理图片
+            },
+            {
+                test: /\.css$/,
+                // use:["style-loader", "css-loader"],
+                use: ["./loaders/style-loader", "css-loader"]
             }
         ]
     },
