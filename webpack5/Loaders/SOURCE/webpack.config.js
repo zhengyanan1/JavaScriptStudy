@@ -1,6 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const TestPlugin = require("./plugins/test-plugin")
+const BannerWebpackPlugin = require("./plugins/banner-webpack-plugin")
 
 
 module.exports = {
@@ -30,13 +31,13 @@ module.exports = {
                 // ]
                 loader: "./loaders/clean-log-loader",
             },
-            {
-                test: /\.js$/,
-                loader: './loaders/banner-loader',
-                options:{
-                    author: "hardenX",
-                }
-            },
+            // {
+            //     test: /\.js$/,
+            //     loader: './loaders/banner-loader',
+            //     options:{
+            //         author: "hardenX",
+            //     }
+            // },
             {
                 test: /\.js$/,
                 loader: './loaders/babel-loader',
@@ -60,7 +61,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "public/index.html"),
         }),
-        new TestPlugin()
+        // new TestPlugin(),
+        new BannerWebpackPlugin({
+            author: '老王'
+        }),
     ],
-    mode: 'development'
+    mode: 'production'
 }
