@@ -19,7 +19,7 @@ class CleanWebpackPlugin{
         files.forEach(file => {
             const _path = `${filePath}/${file}`
             const fileStat = fs.statSync(_path)
-            console.log(fileStat)
+            // console.log(fileStat)
             if(fileStat.isDirectory()){
                 this.removeFiles(fs, _path)
             }else{
