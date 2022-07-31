@@ -2,6 +2,9 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const TestPlugin = require("./plugins/test-plugin")
 const BannerWebpackPlugin = require("./plugins/banner-webpack-plugin")
+const CleanWebpackPlugin = require("./plugins/clean-webpack-plugin")
+
+
 
 
 module.exports = {
@@ -9,7 +12,7 @@ module.exports = {
     output:{
         path: path.resolve(__dirname, "./dist"),
         filename: 'js/[name].js',
-        clean: true,
+        // clean: true,
     },
     module: {
         rules:[
@@ -65,6 +68,7 @@ module.exports = {
         new BannerWebpackPlugin({
             author: '老王'
         }),
+        new CleanWebpackPlugin()
     ],
     mode: 'production'
 }
