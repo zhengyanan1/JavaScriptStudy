@@ -60,4 +60,16 @@ class Name{
 
 new Name()
 
+let visited = Array(4).fill().map(()=> Array(3).fill(false))
 
+
+visited[0][0] = true
+console.log(visited)
+
+console.log( 123 / 10)
+
+const {movingCount} = require("./../jzof_js/jz13")
+
+
+
+console.log(movingCount(1, 2, 3),"---")
