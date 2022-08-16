@@ -26,9 +26,9 @@ function visitDepthFirst(root, path, sum, expectNumber, result){
         }
     }
     else{
-        visitDepthFirst(root.left, path, sum, expectNumber, result)
+        if(root.left) visitDepthFirst(root.left, path, sum, expectNumber, result)
 
-        visitDepthFirst(root.right, path, sum, expectNumber, result)
+        if(root.right) visitDepthFirst(root.right, path, sum, expectNumber, result)
     }
 
     path.pop()
