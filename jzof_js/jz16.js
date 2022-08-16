@@ -19,7 +19,7 @@ function Power(base, exponent)
 }
 
 // version2:
-function Power(base, exponent){
+function Power2(base, exponent){
     if(base === 0)        return 0
     if(exponent === 0 )   return 1
 
@@ -48,6 +48,31 @@ function Power(base, exponent){
 }
 
 
+// version 3:
+function Power3(base, exponent){
+    if(base === 0)        return 0
+    if(exponent === 0 )   return 1
+
+    if(exponent < 0){
+        exponent = -exponent
+        base = 1 / base
+    }
+    
+    let sum = 1
+    let current = base
+    while(exponent > 0){
+        if(exponent % 2 == 1){
+            sum *= current
+        }
+        exponent = Math.floor(exponent / 2)
+        current *= current 
+    }
+    return sum
+}
+
+
 module.exports = {
     Power : Power
 };
+
+console.warn(Power3(2.000, 3))
