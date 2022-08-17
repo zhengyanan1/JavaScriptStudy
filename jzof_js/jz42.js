@@ -3,7 +3,7 @@ function FindGreatestSumOfSubArray(array)
     let dp = []
     dp[0] = array[0]
     for(let i = 1; i < array.length; i++){
-        dp[i] =  Math.max(dp[0] + dp[1], dp[1])
+        dp[i] =  Math.max(dp[i - 1] + array[i], array[i])
     }
 
     let max = dp[0]
