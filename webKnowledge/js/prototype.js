@@ -10,9 +10,16 @@ function Person(name) {
     }
 }
 Person.prototype.nameI = 'HARDEN'
+
+var person = new Person('person')
+console.log(person.nameI)
+
+console.log(Person.__proto__.constructor)
+console.log(typeof Person.__proto__)
+console.log(Person.__proto__.__proto__)
+console.log(typeof Object.__proto__)
 // 第二步 创建实例
-// var person = new Person('person')
-// console.log(person.nameI)
+
 
 
 function Man(name){
@@ -21,8 +28,7 @@ function Man(name){
 Man.prototype.__proto__ = Person.prototype
 let man = new Man()
 console.log(man.nameI)
-console.log(man.__proto__)
-
+console.log(typeof Man.prototype, Man.prototype)
 // console.log(person.__proto__.constructor)
 // console.log(person.__proto__.__proto__.__proto__)
 // console.log(typeof(Person.__proto__))
