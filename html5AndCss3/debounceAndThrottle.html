@@ -1,0 +1,84 @@
+<html>
+    <head></head>
+    <body id="container" style="background-color:#0000FF33;">
+        <div style="background-color: #FF000022">throttled</div>
+        <div style="background-color: #0000FF33">debounce</div>
+
+
+        <script>
+            window.onload = ()=>{
+                let container = document.getElementById('container')
+                container.onmousemove = debounce1(hello, 2000)
+            }
+
+            function hello(user){
+                console.log("hello ", user)
+            }
+
+            function throttled1(fn, delay = 500){
+                let oldtime = Date.now()
+                
+                return function(...args){
+                    let newtime = Date.now()
+                    if(newtime - oldtime >= delay){
+                        fn.apply(null, args)
+                        oldtime = Date.now()
+                    }
+                }
+            }
+
+            function throttled2(fn, delay = 500){
+                let timer = null
+                return function(...args){
+                    if(!timer){
+                        timer = setTimeout(()=>{
+                            fn.apply(this, args)
+                            timer = null
+                        }, delay)
+                    }
+                }
+            }
+
+            function throttled3(fn, delay = 500){
+                let timer = null
+                let startTime = Date.now()
+
+                return function(){
+                    let curTime = Date.now()
+                    let leftTime = delay - (curTime - startTime)
+                    let context = this
+                    let args = arguments
+
+                    clearInterval(timer)
+
+                    if(leftTime <= 0){
+                        fn.apply(context, args)
+                        startTime = Date.now()
+                        console.log('run by 0')
+                    }
+                    else{
+                        timer = setTimeout(()=>{
+                            fn.apply(context, args)
+                            startTime = Date.now()
+                            console.log('run by timeout') 
+                        }, leftTime)
+                    }
+                }
+            }
+            
+            function debounce1(fn, delay = 500){
+                let timer = null
+
+                return function(){
+                    let context = this;
+                    let args = arguments
+
+                    clearTimeout(timer)
+                    timer = setTimeout(()=>{
+                        fn.apply(context, args)
+                    }, delay)
+                }
+            }
+        </script>
+    </body>
+</html>
