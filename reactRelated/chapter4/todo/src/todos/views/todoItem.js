@@ -1,7 +1,11 @@
 import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
+import { removeTodo, toggleTodo } from '../actions';
 
 const TodoItem = ({onToggle, onRemove, completed, text}) => {
   const checkedProp = completed ? {checked: true} : {};
+
+  console.warn("Item:", text)
   return (
     <li
       className="todo-item"
@@ -24,4 +28,14 @@ TodoItem.propTypes = {
   text: PropTypes.string.isRequired
 }
 
-export default TodoItem;
+const mapDispatchToProps = (dispatch, ownProps)=>{
+  const {id} = ownProps
+  return {
+    onToggle: ()=> dispatch(toggleTodo(id)),
+    onRemove: ()=> dispatch(removeTodo(id))
+  }
+}
+
+// export default TodoItem;
+export default connect(null, mapDispatchToProps)(TodoItem);
+

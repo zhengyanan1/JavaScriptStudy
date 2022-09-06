@@ -57,6 +57,7 @@ class Counter extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log("shoule Update")
     return (nextProps.caption !== this.props.caption) ||
            (nextState.count !== this.state.count);
   }
