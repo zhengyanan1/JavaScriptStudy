@@ -6,6 +6,9 @@ const style = {
 };
 
 class ControlPanel extends Component {
+  componentDidMount(){
+    console.log("didMount ControlPanel")
+  }
   render() {
     console.log('enter ControlPanel render');
     return (
