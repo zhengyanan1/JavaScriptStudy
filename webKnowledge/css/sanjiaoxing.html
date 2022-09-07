@@ -1,0 +1,47 @@
+<html>
+    <head></head>
+    <body>
+        <style>
+            .border {
+                width: 0px;
+                height: 0px;
+                border: 50px solid;
+                border-width: 0 50px 50px;
+                border-color: transparent transparent #d9534f;
+            }
+            .border:after {
+                content: '';
+                border-style: solid;
+                border-width: 0 40px 40px 40px;
+                border-color: transparent transparent #FFFFFF transparent ;
+                position: absolute;
+                top: 6px;
+                left: 10px;
+            }
+            .box {
+                /* 内部大小 */
+                width: 0px;
+                height: 0px;
+                /* 边框大小 只设置两条边*/
+                border-top: #4285f4 solid;
+                border-right: transparent solid;
+                border-width: 85px; 
+                /* 其他设置 */
+                margin: 50px;
+            }
+            .scale{
+                width: 100px;
+                height: 100px;
+                background-color: #d9534f;
+                transform: scale(1, 1);
+            }
+        </style>
+        <div style="margin-left: 300px;position: relative;">
+            <div class="border"></div>
+        </div>
+        <div class="box"></div>
+
+        <div class="scale"></div>
+        <div>111</div>
+    </body>
+</html>

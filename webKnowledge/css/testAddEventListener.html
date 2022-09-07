@@ -1,0 +1,26 @@
+<html>
+    <head></head>
+    <body>
+        <div id="parent" style="width: 200px; height:200px;background-color: aqua;" >
+            <div id="child" style="width: 100px;height:100px; background-color: bisque;"></div>
+        </div>
+
+
+
+
+        <script>
+            window.onload = ()=>{
+                const domParent = document.getElementById('parent')
+                const domChild = document.getElementById('child')
+
+                domParent.addEventListener('click', ()=>{
+                    console.warn('click parent')
+                }, true)
+
+                domChild.addEventListener('click', ()=>{
+                    console.warn('click child')
+                })
+            }
+        </script>
+    </body>
+</html>
