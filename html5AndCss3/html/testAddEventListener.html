@@ -1,0 +1,16 @@
+<html>
+    <head></head>
+    <body>
+        <div id="myBtn">Button</div>
+
+        <script>
+            window.onload = ()=>{
+                let elementBtn = document.getElementById("myBtn")
+                elementBtn.addEventListener('click', function(){
+                    console.log(this)
+                    console.log('click me')
+                })
+            }
+        </script>
+    </body>
+</html>
