@@ -1,0 +1,3 @@
+type ActivityLog = {
+    lastEvent: Date
+}
