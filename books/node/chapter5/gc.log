@@ -1,0 +1,13 @@
+[44490:0x158008000]       19 ms: Scavenge 4.4 (4.7) -> 4.3 (6.0) MB, 0.6 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       19 ms: Scavenge 4.4 (6.0) -> 4.3 (6.7) MB, 0.5 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       20 ms: Scavenge 5.2 (6.7) -> 5.3 (8.7) MB, 0.2 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       20 ms: Scavenge 6.2 (8.7) -> 6.1 (9.7) MB, 0.2 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       21 ms: Scavenge 7.1 (9.7) -> 7.1 (14.7) MB, 0.2 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       22 ms: Scavenge 9.9 (14.7) -> 10.1 (15.7) MB, 0.6 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       23 ms: Scavenge 10.9 (15.7) -> 10.6 (26.7) MB, 0.8 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       26 ms: Scavenge 17.7 (26.9) -> 18.4 (27.4) MB, 1.3 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       28 ms: Scavenge 18.5 (27.4) -> 17.6 (50.7) MB, 1.5 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       34 ms: Scavenge 33.8 (51.3) -> 35.1 (52.6) MB, 3.0 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       36 ms: Scavenge 35.2 (52.6) -> 33.4 (67.1) MB, 1.8 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
+[44490:0x158008000]       87 ms: Mark-sweep 237.2 (266.1) -> 233.2 (270.7) MB, 2.7 / 0.0 ms  (+ 12.1 ms in 252 steps since start of marking, biggest step 0.3 ms, walltime since start of marking 28 ms) (average mu = 1.000, current mu = 1.000) finalize incremental marking via stack guard GC in old space requested
+[44490:0x158008000]      225 ms: Scavenge 722.2 (769.2) -> 717.8 (764.8) MB, 7.1 / 0.0 ms  (average mu = 1.000, current mu = 1.000) allocation failure 
