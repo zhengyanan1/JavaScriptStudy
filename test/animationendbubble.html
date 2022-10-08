@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <style>
+            @keyframes progress{
+                from {
+                    width: 100px;
+                }
+                to{
+                    width: 100%;
+                }
+            }
+
+            .progress_change{
+                animation-name: progress;
+                animation-duration: 2s;   
+                animation-iteration-count: 1;
+                animation-timing-function: linear;
+                animation-fill-mode: backwards;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="parent">
+            <div id="child" style="border-radius: 50px;width: 100px;height: 100px;background-color: aqua;">1111</div>
+        </div>
+
+
+        <script>
+            window.onload = ()=>{
+                const ele = document.getElementById('child')
+                ele.onclick = ()=>{
+                    ele.className = "progress_change"
+                }
+
+                ele.onanimationend = ()=>{
+                    console.log('this is child on')
+                }
+
+                const parent = document.getElementById('parent')
+                parent.addEventListener('animationend',()=>{
+                    console.log("this is father---")
+                })
+            }
+        </script>
+    </body>
+</html>
