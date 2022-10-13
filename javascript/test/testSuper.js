@@ -22,3 +22,6 @@ class sup {
   let jack = new sub("jack", 20);
   jack.printName(); //输出 : jack
   jack.printAge(); //输出 : 20
+
+let a
+console.log(typeof a === '')
