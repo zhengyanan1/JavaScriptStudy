@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <TestPanelReduxReact />
+      <TestPanelReduxReact data={['Harden', "Lebron", "Curry"]} />
     </Provider>
   </React.StrictMode>
 );

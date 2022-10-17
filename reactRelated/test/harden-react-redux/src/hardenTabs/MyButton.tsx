@@ -18,7 +18,7 @@ const choosedStyle: CSSProperties = {
     backgroundColor: '#000FFF66'
 }
 
-export function MyButton({
+function MyButton({
         text, index, isShow, show, hide
     }:{
         text: string,

@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import { Filter } from './Filter'
 import MyButton from './MyButton'
 
 let rootStyle: CSSProperties = {
@@ -13,10 +14,15 @@ let rootStyle: CSSProperties = {
     // backgroundColor: '#FF000055'
 }
 
-export default function TestPanelReduxReact(){
+export default function TestPanelReduxReact(
+    {data}:{
+        data: string[]
+    }){
     return (
     <div style = {rootStyle}>
-        <MyButton text="harden1" index={0}/>
-        <MyButton text="lebora1" index={1}/>
+        <Filter/>
+        {data.map((v,_index)=>{
+            return <MyButton key={`${v}:${_index}`} text={v} index={_index}/>
+        })}
     </div>)
 }
