@@ -20,12 +20,32 @@
         </style>
     </head>
     <body>
-        <div class="img1"></div>
-        <div class="img2"></div>
-        <div style="background-color: #FF0000; width: 300px; height: 300px;display: flex;flex-direction: row;">
-            <div style="background-color: #00FF00;height: 40px; flex-grow: 1;">111</div>
-            <div style="width: 20px;height:40px;background-color: #0000FF;">222</div>
+        <div class="img1" onclick="addGif()">11</div>
+        <div class="img2">22</div>
+        <div style="width: 300px; height: 300px;display: flex;flex-direction: row;">
+            <!-- <div style="background-color: #00FF00;height: 40px; flex-grow: 1;">111</div>
+            <div style="width: 20px;height:40px;background-color: #0000FF;">222</div> -->
+            <div id="container" style="background-color:#0000FF66">
+                <!-- <img src="./gif10001.gif" style="height: 100%;"> -->
+            </div>
+           
         </div>
         <br/>
+
+        <script>
+            let i = 0
+            function addGif(){
+                let container = document.getElementById("container")
+
+                let img = new Image()
+                img.src = "./gif10001.gif?" + i++
+                img.style.height = '100%'
+                container.appendChild(img)
+
+                setTimeout(()=>{
+                    container.removeChild(img)
+                }, 6500)
+            }
+        </script>
     </body>
 </html>

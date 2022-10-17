@@ -20,12 +20,10 @@ for(let i = 0, len = nums.length; i < len; i++){
 // console.log(i, len)  // i is not defined!!!
 
 
-
 let GetBulletData = (function(){
     let _NUM = 1
     return function(){ return "测试弹幕" + _NUM++}
 }());
-
 
 console.log(GetBulletData())
 console.log(GetBulletData())
@@ -73,3 +71,6 @@ const {movingCount} = require("./../jzof_js/jz13")
 
 
 console.log(movingCount(1, 2, 3),"---")
+let aa = 1
+let myO = {aa}
+console.log(myO)
