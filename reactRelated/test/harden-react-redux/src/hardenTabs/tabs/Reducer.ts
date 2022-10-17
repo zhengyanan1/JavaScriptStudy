@@ -1,7 +1,7 @@
 import { HIDE, SHOW } from './ActionTypes';
 
 
-export const reducer = (state = [false, false], action: any) =>{
+export const reducer = (state = [false, false, false], action: any) =>{
     let newstate;
     switch(action.type){
         case SHOW:

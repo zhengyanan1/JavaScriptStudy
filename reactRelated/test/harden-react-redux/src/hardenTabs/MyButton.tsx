@@ -1,6 +1,6 @@
-import { CSSProperties, useEffect, useReducer } from 'react'
+import { CSSProperties } from 'react'
 import { connect } from 'react-redux'
-import { hideAction, showAction } from './Actions'
+import { hideAction, showAction } from './tabs/Actions'
 
 let commonStyle: CSSProperties = {
     width: '200px',
@@ -28,7 +28,7 @@ function MyButton({
         hide: Function
     }){
     
-    console.log(text, index, isShow, show, hide)
+    // console.log(text, index, isShow, show, hide)
 
     return (
     <div style={isShow ? choosedStyle : unChoosedStyle} onClick={()=>{isShow ? hide(): show()}}>
@@ -38,7 +38,7 @@ function MyButton({
 
 function mapStateToProps(state: any, ownProps: any){
     return {
-        isShow: state[ownProps.index]
+        isShow: state.tabs[ownProps.index]
     }
 }
 
