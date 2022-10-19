@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.回顾Object.defineProperty方法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- view -->
+    <div class="demo">
+    </div>
+
+    <script type="text/javascript">
+        let num = 18
+        let person = {
+            name: 'zhangsan',
+            sex: 'man',
+            age: num
+        }
+
+        Object.defineProperty(person, 'age', {
+            // value: 18,
+            // enumerable: true,  // 默认false， 可枚举
+            // writable: true,     // 默认是false， 可写
+            // configurable: true  // 默认false, 可删除
+
+            get(){
+                console.log('there is people read age attribute')
+                return num
+            },
+            // when there is someone change age attribute
+            set(v){
+                console.log('change age attribute')
+                num = v
+            }
+        })
+
+        // console.log(Object.keys(person))
+        console.log(person)
+
+    </script>
+</body>
+</html>

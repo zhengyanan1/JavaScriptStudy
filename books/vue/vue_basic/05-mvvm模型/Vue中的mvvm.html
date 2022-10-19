@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue中的mvvm</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- view -->
+    <div class="demo">
+        <h5>name: {{name}}</h5>
+        <h5>address: {{address}}</h5>
+        <!-- <h5>test1: {{$options}}</h5> -->
+        <!-- <h5>test2: {{_c}}</h5> -->
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // ViewModel
+        const vm = new Vue({
+            el: '.demo',
+            //model
+            data:{
+                name: 'harden',
+                address: 'shenzhen',
+                a: 1
+            }
+        })
+        console.log(vm)
+
+    </script>
+</body>
+</html>

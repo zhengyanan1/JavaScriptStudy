@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el与data的两种写法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div class="demo">
+        <h5>你好，{{name}}</h5>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // el 两种写法
+        const v =  new Vue({
+            // el: '.demo',   // 第一种写法
+            data: { 
+                name: 'harden',
+            }
+        });
+        setTimeout(()=>{
+            v.$mount('.demo')     // 第二种写法
+        }, 1000)
+
+        // data的两种写法
+        new Vue({
+            el: '.demo',   
+            // 第一种写法
+            // data: { 
+            //     name: 'harden',
+            // }
+
+            // 第二种写法
+            data(){
+                console.log(this) // 此处的this是Vue实例对象
+                return {
+                    name: 'harden3'
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
