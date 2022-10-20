@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.键盘事件</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h5>welcome to {{name}} study</h5>
+        <input type="text" placeholder="press enter show input" @keyup.ctrl.f='showInfo'/>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+        Vue.config.keyCodes.huiche = 13  
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                name: 'yunyang'
+            },
+            methods:{
+                showInfo(event){
+                    // console.log(event.key, event.keyCode)
+                    // if(event.keyCode !== 13)    return
+                    console.log(event.target.value)
+                },
+            }
+        });
+    </script>
+</body>
+</html>

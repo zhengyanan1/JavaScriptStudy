@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件基本使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div class="demo">
+        <h5>welcome to {{name}} study</h5>
+        <!-- <button v-on:click='showInfo'>点我提示信息</button> -->
+        <button @click='showInfo1'>点我提示信息1</button>
+        <button @click='showInfo2($event, 66)'>点我提示信息2</button>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;        
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                name: 'yunyang'
+            },
+            methods:{
+                showInfo1(event){
+                    // console.log(event)
+                    // console.log(this === vm)
+                    console.log('hello 1')
+                },
+                showInfo2(event, num){
+                    // console.log(event)
+                    // console.log(this === vm)
+                    console.log('hello 2 ', num)
+                },
+            }
+        })
+    </script>
+</body>
+</html>

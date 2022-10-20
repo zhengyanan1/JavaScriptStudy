@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.事件修饰符</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+        .box1{
+            padding: 5px;
+            background-color: aqua;
+        }
+        .box2{
+            padding: 5px;
+            background-color: orange;
+        }
+
+        ul{
+            height: 200px;
+            background-color: aqua;
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h5>welcome to {{name}} study</h5>
+        <a href="http://baidu.com" @click.prevent='showInfo'>点我提示信息</a>
+        <div @click='showInfo'>
+            <button @click.stop='showInfo'>提示信息</button>
+        </div>
+        <button @click.once='showInfo'>提示信息once</button>
+        <div class="box1" @click.capture='showMsg(1)'>
+            div1
+            <div class="box2" @click='showMsg(2)'>
+                div2
+            </div>
+        </div>
+        <div @click.self='showInfo'>
+            <button @click='showInfo'>提示信息self</button>
+        </div>
+        <ul @scroll='demo'>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;        
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                name: 'yunyang'
+            },
+            methods:{
+                showInfo(event){
+                    // event.stopPropagation()
+                    // event.preventDefault()
+                    alert('hello, boy')
+                    // console.log(event.target)
+                },
+                showMsg(msg){
+                    console.log(msg)
+                },
+                demo(){
+                    for (let i = 0; i < 100000; i++) {
+                        console.log('#')
+                    }
+                    console.log('tired!!!')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
