@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.姓名案例_监视写法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        first:<input type="text" v-model='firstName'/><br/>
+        last:<input type="text" v-model="lastName"/><br/>
+        fullName: <span>{{this.fulllName}}</span><br/>    
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+        Vue.config.keyCodes.huiche = 13  
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                firstName: 'zhang',
+                lastName: 'san', 
+                fulllName: 'zhang-san'
+            },
+            computed:{
+            },
+            watch:{
+                firstName(newValue, oldValue){
+                    setTimeout(()=>{
+                        console.log(this)
+                        this.fulllName = newValue + '-' + this.lastName
+                    }, 1000)
+                },
+                lastName(newValue, oldValue){
+                    this.fulllName = this.firstName + '-' + this.lastName
+                }
+            }
+        });
+    </script>
+</body>
+</html>

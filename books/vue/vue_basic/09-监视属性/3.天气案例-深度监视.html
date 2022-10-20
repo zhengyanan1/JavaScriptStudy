@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.天气案例-监视属性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h5>today the weather is {{info}}</h5>
+        <button @click='changeWeacher'>exchange weather</button><hr/>
+        <h5>a 的值是:{{numbers.a}}</h5>
+        <button @click='numbers.a++'>点我a++</button>
+        <h5>b 的值是:{{numbers.b}}</h5>
+        <button @click='numbers.b++'>点我b++</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+
+        const vm = new Vue({
+            el: '.demo',
+            data:{
+                isHot: true,
+                numbers:{
+                    a: 1,
+                    b: 2
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? 'hot' : 'cold'
+                }
+            },
+            methods: {
+                changeWeacher(){
+                    this.x++
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                isHot:{
+                    handler(newValue, oldValue){
+                        console.log('isHot changed', newValue, oldValue)
+                    }
+                },
+                numbers:{
+                    deep: true,
+                    handler(){
+                        console.log('numbers changed ', this.numbers)
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

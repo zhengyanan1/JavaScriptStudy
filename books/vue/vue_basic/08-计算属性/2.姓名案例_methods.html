@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.姓名案例_methods</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        first:<input type="text" v-model='firstName'/><br/>
+        last:<input type="text" v-model="lastName"/><br/>
+        fullName0: <span>{{getFullName()}}</span><br/>    
+        fullName1: <span>{{getFullName()}}</span><br/>            
+        fullName2: <span>{{getFullName()}}</span><br/>            
+        fullName3: <span>{{getFullName()}}</span><br/>            
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+        Vue.config.keyCodes.huiche = 13  
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                firstName: 'zhang',
+                lastName: 'san',
+            },
+            methods:{
+                getFullName(){
+                    console.log('re render')
+                    return this.firstName.slice(0, 3) + '-' + this.lastName
+                }
+            }
+        });
+    </script>
+</body>
+</html>

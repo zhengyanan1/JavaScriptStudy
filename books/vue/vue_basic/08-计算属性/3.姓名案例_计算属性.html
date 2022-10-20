@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.姓名案例_计算属性.html</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        first:<input type="text" v-model='firstName'/><br/>
+        last:<input type="text" v-model="lastName"/><br/>
+        x:<input type="text" v-model="x"/><br/>
+        fullName1: <span>{{fullName}}</span><br/>    
+        <!-- fullName2: <span>{{fullName}}</span><br/>   
+        fullName3: <span>{{fullName}}</span><br/>       -->
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+        Vue.config.keyCodes.huiche = 13  
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                firstName: 'zhang',
+                lastName: 'san', 
+                x: 'hello'
+            },
+            methods:{
+                demo(){
+
+                }
+            },
+            computed:{
+                fullName:{
+                    // call time:
+                    // 1. 第一次调用时；2.所依赖的数据发生变化
+                    get(){
+                        console.log('call get')
+                        return this.firstName + '-' + this.lastName
+                    },
+                    set(value){
+                        console.log('call set')
+                        const arr = value.split('-')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

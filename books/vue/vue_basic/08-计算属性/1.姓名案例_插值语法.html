@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.姓名案例_插值语法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        first:<input type="text" v-model='firstName'/><br/>
+        last:<input type="text" v-model="lastName"/><br/>
+        fullName: <span>{{firstName.slice(0, 3)}}-{{lastName}}</span>            
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+        Vue.config.keyCodes.huiche = 13  
+
+        const vm = new Vue({
+            el: '.demo',
+            data: {
+                firstName: 'zhang',
+                lastName: 'san'
+            }
+        });
+    </script>
+</body>
+</html>

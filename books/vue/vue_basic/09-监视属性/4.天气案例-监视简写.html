@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.天气案例-监视简写</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <h5>today the weather is {{info}}</h5>
+        <button @click='changeWeacher'>exchange weather</button><hr/>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;      
+
+        const vm = new Vue({
+            el: '.demo',
+            data:{
+                isHot: true,
+            },
+            computed:{
+                info(){
+                    return this.isHot ? 'hot' : 'cold'
+                }
+            },
+            methods: {
+                changeWeacher(){
+                    this.x++
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                // 正常写法
+                // isHot:{
+                //     // immediate: true,
+                //     // deep: true,
+                //     handler(newValue, oldValue){
+                //         console.log('isHot changed', newValue, oldValue)
+                //     }
+                // },
+                // 简写
+                // isHot(newValue, oldValue){
+                //     console.log('isHot changed', newValue, oldValue)
+                // }
+            }
+        });
+
+        // vm.$watch('isHot', {
+        //     immediate: true,
+        //     deep: true,
+        //     handler(newValue, oldValue){
+        //         console.log('isHot changed', newValue, oldValue)
+        //     }
+        // });
+        vm.$watch('isHot', function(newValue, oldValue){
+            console.log('isHot changed simple', newValue, oldValue)
+        })
+    </script>
+</body>
+</html>
