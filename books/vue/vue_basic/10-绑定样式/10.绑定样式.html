@@ -39,7 +39,20 @@
 <body>
     <div class="demo">
         <!-- 1.绑定class样式  字符串写法，适用于：样式的类名不确定，需要动态指定 -->
-        <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+        <div class="basic" :class="mood" @click="changeMood">{{name}}</div><br/>
+
+        <!-- 2.绑定class样式  数组写法，适用于：要绑定的样式个数不确定，名字也不确定 -->
+        <div class="basic" :class="arr">{{name}}</div><br/>
+
+        <!-- 3.绑定class样式  对象写法，适用于：要绑定的样式个数确定，名字也确定，要动态决定用不用 -->
+        <div class="basic" :class="classObj">{{name}}</div><br/>
+
+
+        <!-- 4..绑定style 对象写法， -->
+        <div class="basic" :style="styleObj">{{name}}</div><br/>
+        <!-- 5.绑定style 对象数组写法， -->
+        <div class="basic" :style="[styleObj, styleObj2]">{{name}}</div><br/>
+
     </div>
     <script type="text/javascript">
         Vue.config.productionTip = false;      
@@ -48,12 +61,24 @@
             el: '.demo',
             data: {
                 name: 'harden',
-                mood: 'normal'
+                mood: 'normal',
+                arr:['harden1','harden2', 'harden3'],
+                classObj:{
+                    harden1: false,
+                    harden2: true
+                },
+                styleObj:{
+                    fontSize: '40px',
+                },
+                styleObj2:{
+                    color:'red',
+                }
             },
             methods: {
                 changeMood(){
                     const arr = ['happy','normal', 'sad']
-                    
+                    const index = Math.floor(Math.random() * 3)
+                    this.mood = arr[index]
                 }
             },
         });

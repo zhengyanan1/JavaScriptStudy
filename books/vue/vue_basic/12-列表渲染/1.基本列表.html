@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.基本列表</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <ul>
+            <li v-for="(p, index) in persons" :key='p.id'>
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+        <!-- travel object -->
+        <ul>
+            <li v-for="(value, k) of car" :key='k'>
+                {{k}}-{{value}}
+            </li>
+        </ul>
+        <!-- travel string -->
+        <ul>
+            <li v-for="(char, index) of str" :key='index'>
+                {{index}}-{{char}}
+            </li>
+        </ul>
+        <!-- travel target count -->
+        <ul>
+            <li v-for="(a, b) of 5">
+                {{a}}-{{b}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // 创建Vue 实例
+        new Vue({
+            el: '.demo', // el 用于指定当前Vue实例挂载的容器
+            data: { // data用于存储数据，数据供el指定的容器使用
+                persons:[
+                    {
+                        id: '001',
+                        name: 'zhangsan',
+                        age: 18
+                    },
+                    {
+                        id: '002',
+                        name: 'lisi',
+                        age: 19
+                    },
+                    {
+                        id: '003',
+                        name: 'wangwu',
+                        age: 20
+                    },
+                ],
+                car:{
+                    name: 'byd',
+                    price: '70w',
+                    color: 'black'
+                },
+                str: 'hello'
+            }
+        })
+    </script>
+</body>
+</html>
