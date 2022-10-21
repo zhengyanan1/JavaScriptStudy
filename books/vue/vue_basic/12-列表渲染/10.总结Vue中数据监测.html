@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.总结Vue中数据监测</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <button @click="student.age++">age++</button><br/>
+        <button @click="addSex">add sex attri, default value: man</button><br/>
+        <button @click="student.sex = 'unknown'">change sex</button><br/>
+        <button @click="addFriend">add Friend</button><br/>
+        <button @click="changeFirstFriend">change first friend's name to zhangsan</button><br/>
+        <button @click="addHobby">addHobby</button><br/>
+        <button @click="updateHobby">change first hobby to be drive</button><br/>
+        <button @click="removeSmoke">remove smoke</button><br/>
+
+        <h5> name: {{student.name}}</h5>
+        <h5 v-if="student.sex"> sex: {{student.sex}}</h5>
+        <h5> age: {{student.age}}</h5>
+        <h5>hobbys</h5>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h5>fridends</h5>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}}--{{f.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        // computed 实现
+        const vm = new Vue({
+            el: '.demo', 
+            data: {
+                student:{
+                    name: 'tom',
+                    age: 18,
+                    hobby:['smoking', 'drinking', 'washhair'],
+                    friends: [
+                        {name: 'jerry', age: 35},
+                        {name: 'tony', age: 39}
+                    ]
+                }
+            },
+            methods: {
+                addSex(){
+                    this.$set(this.student, 'sex', 'man');
+                }, 
+                addFriend(){
+                    this.student.friends.unshift({
+                        name: 'harden',
+                        age: 29
+                    })
+                },
+                changeFirstFriend(){
+                    this.student.friends[0].name = 'zhangsan'
+                },
+                addHobby(){
+                    this.student.hobby.push('swimming')
+                },
+                updateHobby(){
+                    // this.student.hobby.splice(0, 1, 'drive')
+                    this.$set(this.student.hobby, 0, 'driving')
+                },
+                removeSmoke(){
+                    this.student.hobby = this.student.hobby.filter(v => v !== 'smoking')
+                }
+            },
+        });
+    </script>
+</body>
+</html>

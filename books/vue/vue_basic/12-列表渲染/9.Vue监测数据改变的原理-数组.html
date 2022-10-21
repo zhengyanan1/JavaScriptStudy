@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.Vue监测数据改变的原理-数组</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h5>name: {{school.name}}</h5>
+        <h5>address: {{school.address}}</h5>
+        <h5>school leader: {{school.leader}}</h5>
+        <hr/>
+        <button @click="addSetAttr">add one attribute, default value is man</button>
+        <h5> name: {{student.name}}</h5>
+        <h5 v-if="student.sex"> sex: {{student.sex}}</h5>
+        <h5> age: real {{student.age.rAge}} - virtual {{student.age.sAge}}</h5>
+        <h5>hobbys</h5>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h5>fridends</h5>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}}--{{f.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        // computed 实现
+        const vm = new Vue({
+            el: '.demo', 
+            data: {
+                school:{
+                    name: 'yunyang',
+                    address: 'shiyan',
+                },
+                student:{
+                    name: 'tom',
+                    // sex: 'man',
+                    age: {
+                        rAge: 30,
+                        sAge: 28
+                    },
+                    hobby:['smoking', 'drinking', 'washhair'],
+                    friends: [
+                        {name: 'jerry', age: 35},
+                        {name: 'tony', age: 39}
+                    ]
+                }
+            },
+            methods: {
+                addSetAttr(){
+                    this.$set(this.student, 'sex', '男')
+                }
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.Vue监测数据改变的原理</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h5>name: {{name}}</h5>
+        <h5>address: {{address}}</h5>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        // computed 实现
+        const vm = new Vue({
+            el: '.demo', 
+            data: {
+                name: 'yunyang',
+                address: 'shiyan',
+                student:{
+                    name: 'tom',
+                    age: {
+                        real: 30,
+                        virtual: 28
+                    },
+                    friends: [
+                        {
+                            name: 'jerry', age: 35
+                        }
+                    ]
+                }
+            },
+        });
+    </script>
+</body>
+</html>
