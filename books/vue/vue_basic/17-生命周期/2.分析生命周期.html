@@ -11,8 +11,10 @@
 <body>
     <!-- prepare for a container-->
     <div class="demo" :x="n">
+        <h2 v-text="n"></h2>
         <h2>current n is : {{n}}</h2>
         <button @click="add">click me(n + 1)</button>
+        <button @click="bye">click to destroy vm</button>
     </div>
 
     <script type="text/javascript">
@@ -30,7 +32,17 @@
             },
             methods: {
                 add(){
+                    console.log('add')
                     this.n++
+                },
+                bye(){
+                    console.log('bye')
+                    this.$destroy();
+                }
+            },
+            watch:{
+                n(){
+                    console.log('n变了')
                 }
             },
             beforeCreate() {
@@ -45,9 +57,26 @@
                 // document.querySelector('h2').innerText = 'hahhhh'
             },
             mounted() {
-                console.log('mounted')
+                console.log('mounted', this.$el)
                 // console.log(this)
                 // document.querySelector('h2').innerText = 'hahhhh'
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate')
+            },
+            updated() {
+                console.log('updated')
+                this.n = 99
+            },
+
+            beforeDestroy() {
+                console.log("beforeDestroy")
+                this.add()
+                console.log(this.n)
+            },
+            destroyed() {
+                console.log('destroyed')
+                console.log(this.n)
             },
         });
         // vm.$mount('.demo')

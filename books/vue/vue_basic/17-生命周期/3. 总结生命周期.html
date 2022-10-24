@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. 总结生命周期</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h2 :style="{opacity}">welcome to study vue2</h2>
+        <button @click="stop">click me to stop</button>
+        <button @click="opacity = 1">opacity set to 1</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // 创建Vue 实例
+        new Vue({
+            el: '.demo', 
+            data: { 
+                opacity: 1
+            },
+            methods: {
+                change(){
+                    
+                },
+                stop(){
+                    this.$destroy();
+                }
+            },
+            mounted() {
+                this.timer = setInterval(()=>{
+                    console.log('setInterval')
+                    this.opacity -= 0.01
+                    if(this.opacity <= 0){
+                        this.opacity = 1
+                    }
+                }, 16)
+            },
+            beforeDestroy() {
+                console.log('vm is destroyed !!!')
+                clearInterval(this.timer)
+            },
+        });
+
+        // realize by outer timer
+        // setInterval(()=>{
+        //     vm.opacity -= 0.01
+        //     if(vm.opacity <= 0){
+        //         vm.opacity = 1
+        //     }
+        // }, 16)
+    </script>
+</body>
+</html>
