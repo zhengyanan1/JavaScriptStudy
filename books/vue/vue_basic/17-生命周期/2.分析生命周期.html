@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.分析生命周期</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo" :x="n">
+        <h2>current n is : {{n}}</h2>
+        <button @click="add">click me(n + 1)</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // 创建Vue 实例
+        const vm = new Vue({
+            el: '.demo', 
+            // template: `<div>
+            //     <h2>current n is : {{n}}</h2>
+            //     <button @click="add">click me(n + 1)</button>
+            //     </div>`,
+            data: { 
+                n:1
+            },
+            methods: {
+                add(){
+                    this.n++
+                }
+            },
+            beforeCreate() {
+                console.log('beforeCreate')
+            },
+            created() {
+                console.log('created')
+            },
+            beforeMount() {
+                console.log('beforeMount')
+                // console.log(this)
+                // document.querySelector('h2').innerText = 'hahhhh'
+            },
+            mounted() {
+                console.log('mounted')
+                // console.log(this)
+                // document.querySelector('h2').innerText = 'hahhhh'
+            },
+        });
+        // vm.$mount('.demo')
+        
+    </script>
+</body>
+</html>

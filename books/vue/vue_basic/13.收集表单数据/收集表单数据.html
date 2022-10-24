@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <form @submit.prevent="demo">
+            account:<input type="text" v-model.trim='account'/><br/><br/>
+            password:<input type="password" v-model='password'/><br/><br/>
+            age:<input type="number" v-model.number='age'/><br/><br/>
+            sex:
+                man<input type="radio" name="sex" v-model="sex" value="man"/>
+                woman<input type="radio" name="sex" v-model="sex" value="woman"/><br/><br/>
+            likes:
+                study<input type="checkbox" v-model='hobby' value="study"/>
+                game<input type="checkbox" v-model='hobby' value="game"/>
+                eat<input type="checkbox" v-model='hobby' value="eat"/><br/><br/>
+            school area:
+            <select v-model="city">
+                <option value="">please select school area</option>
+                <option value="beijing">beijing</option>
+                <option value="shanghai">shanghai</option>
+                <option value="shenzhen">shenzhen</option>
+                <option value="wuhan">wuhan</option>
+            </select><br/><br/>
+            other info:
+            <textarea v-model.lazy="other"></textarea><br/><br/>
+            <input type="checkbox" v-model='isAgree'/> read and accept<a href="http://www.baidu.com">《user protocol》</a><br/><br/>
+            <button>提交</button>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+     Vue.config.productionTip = false;
+    
+    new Vue({
+        el:'#root',
+        data:{
+            account: '',
+            password: '',
+            sex: 'man',
+            age: '',
+            hobby: [],
+            city: 'beijing',
+            other: '',
+            isAgree: false
+        },
+        methods: {
+            demo(){
+                console.log(JSON.stringify(this._data))
+            }
+        },
+    })
+</script>
+</html>

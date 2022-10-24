@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.引出生命周期</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h2 v-if="a">hello</h2>
+        <h2 :style="{opacity}">welcome to study vue2</h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+        // 创建Vue 实例
+        new Vue({
+            el: '.demo', 
+            data: { 
+                a:false,
+                opacity: 1
+            },
+            methods: {
+                change(){
+                    
+                }
+            },
+            mounted() {
+                console.log('mounted---')
+                setInterval(()=>{
+                    this.opacity -= 0.01
+                    if(this.opacity <= 0){
+                        this.opacity = 1
+                    }
+                }, 16)
+            },
+        });
+
+        // realize by outer timer
+        // setInterval(()=>{
+        //     vm.opacity -= 0.01
+        //     if(vm.opacity <= 0){
+        //         vm.opacity = 1
+        //     }
+        // }, 16)
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令</title>
+    <style>
+    </style>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h2>{{name}}</h2>
+        <h2>current n is:<span v-text="n"></span></h2>
+        <h2>10 times big n is:<span v-big="n"></span></h2>
+        <h2>10 times big n is:<span v-big-number="n"></span></h2>
+
+        <button @click="n++">n++</button>
+        <hr/>
+        <input type="text" v-fbind:value='n'/>
+    </div>
+
+    <div class="demo2">
+        <input type="text" v-fbind:value='x'/>
+        <button @click="x++">x++</button>
+
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        Vue.directive('fbind', {
+            // when binding
+            bind(element, binding){
+                console.log('bind')
+
+                element.value = binding.value
+            },
+            // when element is inserted into parent
+            inserted(element, binding){
+                console.log('inserted')
+
+                element.focus()
+            },
+            // when the template is reparsered
+            update(element, binding){
+                console.log('update')
+                element.value = binding.value
+            }
+        })
+
+        // 创建Vue 实例
+        new Vue({
+            el: '.demo', // el 用于指定当前Vue实例挂载的容器
+            data: { // data用于存储数据，数据供el指定的容器使用
+                name:'harden',
+                n: 9
+            },
+            directives:{
+                // when big is to be called?
+                // 1. initial time when the directive is binded with h5element
+                // 2. when the template is reparsered
+                big(element, binding){
+                    console.log(this) // tips: now the this is window
+                    // console.log('call big')
+                    element.innerText = binding.value * 10
+                },
+                'big-number'(element, binding){
+                    // console.log('call big')
+                    element.innerText = binding.value * 10
+                },
+                // fbind:{
+                //     // when binding
+                //     bind(element, binding){
+                //         console.log('bind')
+
+                //         element.value = binding.value
+                //     },
+                //     // when element is inserted into parent
+                //     inserted(element, binding){
+                //         console.log('inserted')
+
+                //         element.focus()
+                //     },
+                //     // when the template is reparsered
+                //     update(element, binding){
+                //         console.log('update')
+                //         element.value = binding.value
+                //     }
+                // }
+            
+            }
+        });
+
+        new Vue({
+            el: '.demo2', 
+            data: { 
+                x: 0
+            },
+        });
+    </script>
+</body>
+</html>

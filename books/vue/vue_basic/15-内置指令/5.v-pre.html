@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.v-pre</title>
+    <style>
+    </style>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <h2 v-pre>Vue is simple</h2>
+        <h2 >the value of n is {{n}}</h2>
+        <button @click="n++">n++</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+    <script type="text/javascript">
+        console.log(1)
+        Vue.config.productionTip = false;
+
+        // 创建Vue 实例
+        new Vue({
+            el: '.demo', // el 用于指定当前Vue实例挂载的容器
+            data: { // data用于存储数据，数据供el指定的容器使用
+                n: 0
+            }
+        })
+    </script>
+</body>
+</html>

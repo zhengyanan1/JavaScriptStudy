@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h3>formated time</h3>
+        <h3>now time is: {{fmtTime}}</h3>
+        <h3>now time is: {{getFmtTime()}}</h3>
+        <h3>now time is: {{time | timeFormater}}</h3>
+        <h3>now time is: {{time | timeFormater('YYYY---') | mySlice}}</h3>
+        <h3 :x="msg | mySlice">Harden</h3>
+
+    </div>
+
+    <div id="root2">
+        <h1>{{msg | mySlice}}</h1>
+    </div>
+</body>
+<script type="text/javascript">
+     Vue.config.productionTip = false;
+     Vue.filter('mySlice', function(value){
+        return value.slice(0, 4)
+     })
+    
+    new Vue({
+        el:'#root',
+        data:{
+            time:1621561377603,
+            msg: 'today is Saturday'
+        },
+        computed: {
+            fmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        methods: {
+            getFmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        // local filter:
+        filters:{
+            timeFormater(time, formatMode = 'YYYY-MM-DD HH:mm:ss'){
+                return dayjs(time).format(formatMode)
+            },
+            mySlice(value){
+                return value.slice(0, 4)
+            }
+        }
+    });
+
+    new Vue({
+        el:'#root2',
+        data:{
+            msg: 'hello, harden2'
+        }
+    })
+</script>
+</html>
