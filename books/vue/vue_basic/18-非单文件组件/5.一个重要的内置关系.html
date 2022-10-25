@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.一个重要的内置关系</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <school></school>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        Vue.prototype.xxx = 990
+
+        const school = Vue.extend({
+        template: `
+            <div>
+                <h5>school name: {{schoolName}}</h5>
+                <h5>school address: {{address}}</h5>
+                <button @click='showName'>showName</button>
+            </div>`,
+        data(){
+            return {
+                schoolName: 'yunyang',
+                address:'shiyan',
+            }
+        },
+        methods: {
+            showName(){
+                console.log(this, this.xxx)
+                // alert(this.schoolName)
+            }
+        },
+    })
+
+        const vm = new Vue({
+            el: '.demo',
+            data:{
+                msg: 'hello'
+            },
+            components:{
+                school
+            }
+        });
+
+        console.log(school.prototype.__proto__ === Vue.prototype)
+
+        // function Demo(){
+        //     this.a = 1
+        //     this.b = 2
+        // }
+
+        // const d = new Demo()
+        // console.log(d.__proto__ === Demo.prototype)
+
+        // Demo.prototype.x = 99
+        // console.log('@', d)
+    </script>
+</body>
+</html>

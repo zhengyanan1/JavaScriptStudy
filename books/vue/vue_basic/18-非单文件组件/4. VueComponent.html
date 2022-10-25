@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. VueComponent</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <school></school>
+        <hello></hello>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+
+            // 创建一个school组件
+    const school = Vue.extend({
+        template: `
+            <div>
+                <h5>school name: {{schoolName}}</h5>
+                <h5>school address: {{address}}</h5>
+                <button @click='showName'>showName</button>
+            </div>`,
+        data(){
+            return {
+                schoolName: 'yunyang',
+                address:'shiyan',
+            }
+        },
+        methods: {
+            showName(){
+                console.log(this)
+                // alert(this.schoolName)
+            }
+        },
+    })
+
+    const test = Vue.extend({
+        template: `<span>atguigu</span>`,
+    })
+
+    const hello = Vue.extend({
+        template: `
+            <div>
+                <h2>{{msg}}</h2>
+                <test></test>
+            </div>`,
+        data(){
+            return {
+                msg: 'harden is Here'
+            }
+        },
+        components:{
+            test
+        }
+    })
+
+
+
+    console.log(school, "+")
+    console.log(hello, "$")
+
+    const vm = new Vue({
+        el: '.demo',
+        components: {
+            school,
+            hello
+        }
+    });
+    </script>
+</body>
+</html>

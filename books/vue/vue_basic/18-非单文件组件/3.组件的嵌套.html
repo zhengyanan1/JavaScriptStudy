@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.组件的嵌套</title>
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- prepare for a container-->
+    <div class="demo">
+        <!-- <app></app> -->
+    </div>
+
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;
+
+    const student = Vue.extend({
+        template: `
+            <div>
+                <h5>student name: {{studentName}}</h5>
+                <h5>student age: {{age}}</h5> 
+            </div>`,
+        data(){
+            return {
+                studentName: 'harden',
+                age: 29,
+            }
+        }
+    })
+
+    const hello = Vue.extend({
+        template: `<h1>{{msg}}</h1>`,
+        data(){
+            return {
+                msg: 'welcome to study!'
+            }
+        }
+    })
+
+    // 创建一个school组件
+    const school = Vue.extend({
+        template: `
+            <div>
+                <h5>school name: {{schoolName}}</h5>
+                <h5>school address: {{address}}</h5>
+                <student></student>
+            </div>`,
+        data(){
+            return {
+                schoolName: 'yunyang',
+                address:'shiyan',
+            }
+        },
+        methods: {
+            showName(){
+                alert(this.schoolName)
+            }
+        },
+        components:{
+            student
+        }
+    })
+
+    const app = Vue.extend({
+        template:`
+            <div>
+                <hello></hello>
+                <school></school>
+            </div>
+        `,
+        components:{
+            school,
+            hello
+        }
+    })
+
+    new Vue({
+        el: '.demo',
+        template: `<app></app>`,
+        // 注册组件...
+        components:{
+            app
+        }
+    });
+</script>
+</html>
