@@ -3,6 +3,11 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+let person = {
+  name: 'Tome', 
+  age: 29
+}
+
 new Vue({
   el: '#app',
   // 将App组件放入容器中
@@ -15,4 +20,4 @@ new Vue({
   // components:{
   //   App
   // },
-})
+});
