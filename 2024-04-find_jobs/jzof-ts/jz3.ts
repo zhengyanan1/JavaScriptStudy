@@ -20,3 +20,7 @@ export function duplicate(numbers: number[]): number {
 }
 
 console.log(duplicate([2,3,1,0,2,5,3]));
+
+1
+2
+3
