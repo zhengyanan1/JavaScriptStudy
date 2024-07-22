@@ -30,7 +30,7 @@ function merge(data, leftStart, rightStart, end, helper){
             data[p++] = left[pl++]
         }
         else{
-            helper[0] += left.length - pl + 1
+            helper[0] += left.length - pl
             data[p++] = right[pr++]
         }
     }
