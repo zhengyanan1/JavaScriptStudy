@@ -1,0 +1,15 @@
+.root {
+    width: 100%;
+    color: #D7D7D7;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 18px;
+    height: 50px;
+
+    &--choosed{
+        background-color: #323232;
+    }
+}
