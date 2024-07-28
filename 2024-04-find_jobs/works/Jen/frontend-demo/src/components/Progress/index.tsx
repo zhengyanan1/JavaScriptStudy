@@ -24,6 +24,7 @@ export const Progress = memo((props: Props)=>{
 
   useEffect(()=>{
     const resizeListener = ()=>{
+      // 不一样长度的歌或者屏幕尺寸，需要重新计算单位
       if(progressRef.current){
         const size = progressRef.current.getBoundingClientRect();
         unit.current = Math.floor(size.width / len * 100) / 100;
@@ -40,7 +41,7 @@ export const Progress = memo((props: Props)=>{
       document.removeEventListener('mousemove', mouseMoveListener);
       document.removeEventListener('mouseup', mouseUpListener);
     }
-  }, []);
+  }, [len]);
 
   const onMouseDown = (event:any)=>{
     isMoving.current = true;
