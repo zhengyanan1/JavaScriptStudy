@@ -1,8 +1,7 @@
 
 import styles from './style.module.scss';
 import { formatNum, formatTime } from '../../utils';
-import { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { verify } from 'crypto';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 interface Props {
   progress: number; //seconds
@@ -13,14 +12,15 @@ interface Props {
 export const Progress = memo((props: Props)=>{
   const {len, progress, setUpdateProgress} = props;
 
+  const [tempProgress, setTempProgress] = useState(0);
+  const unit = useRef(1); //1秒对应几像素，用于拖拽进度时
   const progressRef = useRef<HTMLDivElement>(null);
   const isMoving = useRef(false);
-  const [tempProgress, setTempProgress] = useState(0);
   const tempBaseInfo = useRef({
     progress: 0,
     clientX: 0,
+    tempProgress: 0, //同tempProgress的state一个意思，给mousemove事件和mouseup事件用的，用state的话，会有闭包的问题。
   });
-  const unit = useRef(1); //1秒对应几像素，用于拖拽进度时
 
   useEffect(()=>{
     const resizeListener = ()=>{
@@ -29,16 +29,20 @@ export const Progress = memo((props: Props)=>{
         unit.current = Math.floor(size.width / len * 100) / 100;
       }
     };
-
     resizeListener();
+
     window.addEventListener('resize', resizeListener);
+    document.addEventListener('mousemove', mouseMoveListener);
+    document.addEventListener('mouseup', mouseUpListener);
+
     return ()=>{
       window.removeEventListener('resize', resizeListener);
+      document.removeEventListener('mousemove', mouseMoveListener);
+      document.removeEventListener('mouseup', mouseUpListener);
     }
-  }, [])
+  }, []);
 
   const onMouseDown = (event:any)=>{
-    console.log('=====down');
     isMoving.current = true;
     setTempProgress(progress);
 
@@ -46,31 +50,35 @@ export const Progress = memo((props: Props)=>{
     tempBaseInfo.current = {
       progress: progress,
       clientX,
+      tempProgress: progress,
     }
   }
 
-  const onMouseMove = (event: any)=>{
+  const mouseMoveListener = useCallback((event: any)=>{
     if(isMoving.current){
       const {clientX} = event;
 
       const diff = clientX - tempBaseInfo.current.clientX;
-      setTempProgress(tempBaseInfo.current.progress + diff / unit.current);
+      const curProgress = tempBaseInfo.current.progress + diff / unit.current;
+      setTempProgress(curProgress)
+      tempBaseInfo.current.tempProgress = curProgress;
     }
-  }
+  }, [])
 
-  const finishProgressUpdate = (event: any)=>{
+  const mouseUpListener = useCallback((event: any)=>{
     if(isMoving.current){
-      isMoving.current = false;
-      const updateProgress = formatNum(tempProgress, 0, len);
+      const updateProgress = formatNum(tempBaseInfo.current.tempProgress, 0, len);
       setUpdateProgress(updateProgress);
+
+      isMoving.current = false;
     }
-  }
+  }, [tempBaseInfo, len, setUpdateProgress]);
 
   const realProgress = isMoving.current ? formatNum(tempProgress, 0, len) : progress;
   const percent = Math.floor(realProgress / len * 1000) / 10;
 
   return (
-    <div className={styles.root} onMouseMove={onMouseMove} onMouseUp={finishProgressUpdate} onMouseLeave={finishProgressUpdate}>
+    <div className={styles.root}>
         <span className={styles.time}>{formatTime(realProgress)}</span>
         <div ref={progressRef} className={styles.outter}>
           <div className={styles.inner} style={{width: `${percent}%`}}>
