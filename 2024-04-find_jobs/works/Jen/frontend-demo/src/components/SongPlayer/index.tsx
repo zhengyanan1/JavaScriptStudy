@@ -30,6 +30,10 @@ export const SongPlayer = (props: Props)=>{
     }
   }
 
+  const setUpdateProgress = (progress: number)=>{
+    palyerRef.current.currentTime = progress;
+  }
+
   useEffect(()=>{
     if(!data) return;
     setIsPlaying(true);    
@@ -66,7 +70,7 @@ export const SongPlayer = (props: Props)=>{
       {data?.src && <audio ref={palyerRef} key={data.id} src={data.src} autoPlay/>}
       <span className={styles.title}>{data?.title || 'There is no one choosed'}</span>
       {data && <img src={isPlaying? iconPause : iconPlay} className={styles.btn} alt={isPlaying? 'Pause': 'Play'} onClick={onPlayOrPause}/>}
-      {data && <Progress progress={progress} len={data.duration}/>}
+      {data && <Progress progress={progress} len={data.duration} setUpdateProgress={setUpdateProgress}/>}
     </div>
   )
 }

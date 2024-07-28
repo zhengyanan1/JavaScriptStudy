@@ -34,10 +34,18 @@
     background-color: #FD6431;
     border-radius: 2px;
 }
-.dot{
+.dotWrapper{
     position: absolute;
-    right: -4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    right: -6px;
+
+    width: 12px;
+    height: 12px;
+}
+.dot{
     width: 8px;
     height: 8px;
     border-radius: 4px;
