@@ -32,6 +32,7 @@ export const SongPlayer = (props: Props)=>{
 
   const setUpdateProgress = (progress: number)=>{
     palyerRef.current.currentTime = progress;
+    setProgress(progress);
   }
 
   useEffect(()=>{
