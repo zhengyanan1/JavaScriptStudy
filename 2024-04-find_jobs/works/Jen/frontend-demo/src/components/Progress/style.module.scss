@@ -1,0 +1,45 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 16px;
+
+    flex-grow: 1;
+
+    font-size: 10px;
+    color: aliceblue;
+}
+
+.time{
+    width: 30px;
+}
+
+.outter{
+    display: flex;
+    flex-grow: 1;
+    margin: 0 8px;
+    height: 4px;
+    border-radius: 2px;
+
+
+    background-color: #4F4F4F;
+}
+.inner{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 4px;
+    width: 0%;
+
+    background-color: #FD6431;
+    border-radius: 2px;
+}
+.dot{
+    position: absolute;
+    right: -4px;
+
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #ffffff;
+}

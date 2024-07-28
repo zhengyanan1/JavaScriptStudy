@@ -2,27 +2,31 @@ import React, { useState } from 'react';
 import { SongList } from './components/SongList';
 import { SongInfo } from './typings/types';
 
-import mp3Url from './assets/music/danxiaogui.m4a';
+import mp3Url1 from './assets/music/danxiaogui.m4a';
+import mp3Url2 from './assets/music/aiyaotandangdang.mp3';
+import mp3Url3 from './assets/music/danxiaogui.m4a';
+import mp3Url4 from './assets/music/danxiaogui.m4a';
+
+
 import './App.scss';
 import { SongPlayer } from './components/SongPlayer';
 
 
-//TODO: Delete
 const  songs: SongInfo[] = [
   {
-    title: '胆小鬼1',
+    title: '胆小鬼',
     artistName: '梁咏琪',
     albumName: '梁咏琪',
     duration: 260,
-    src: mp3Url,
+    src: mp3Url1,
     id: '1234561'
   },
   {
-    title: '胆小鬼2',
-    artistName: '梁咏琪',
-    albumName: '梁咏琪',
-    duration: 260,
-    src: mp3Url,
+    title: '爱要坦荡荡',
+    artistName: '丁丁',
+    albumName: '爱要坦荡荡',
+    duration: 135,
+    src: mp3Url2,
     id: '1234562'
   },
   {
@@ -30,7 +34,7 @@ const  songs: SongInfo[] = [
     artistName: '梁咏琪',
     albumName: '梁咏琪',
     duration: 260,
-    src: mp3Url,
+    src: mp3Url1,
     id: '1234563'
   },
   {
@@ -38,7 +42,7 @@ const  songs: SongInfo[] = [
     artistName: '梁咏琪',
     albumName: '梁咏琪',
     duration: 260,
-    src: mp3Url,
+    src: mp3Url1,
     id: '1234564'
   }
 ];
