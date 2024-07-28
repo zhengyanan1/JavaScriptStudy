@@ -1,6 +1,6 @@
 import styles from './style.module.scss';
  
-export const TopBar = ()=>{
+export const SongListTopBar = ()=>{
   return (
     <div className={styles.root}>
         <span style={{flex: 3}}>TITLE</span>

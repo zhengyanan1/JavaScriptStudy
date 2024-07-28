@@ -1,27 +1,21 @@
 import styles from './style.module.scss';
 import { SongInfo } from '../../typings/types';
-import { TopBar } from '../TopBar';
+import { SongListTopBar } from '../SongListTopBar';
 import { ListItem } from '../ListItem';
-import { useState } from 'react';
 
 interface Props {
   songs: SongInfo[];
+  change: (index: number) => void;
+  curIndex: number;
 }
 
 export const SongList = (props: Props) => {
-  const [curIndex, setIndex] = useState(2);
-
-  const change = (index: number) => {
-    setIndex(index);
-  };
-
-  const { songs } = props;
+  const { songs, curIndex, change } = props;
   return (
     <div className={styles.root}>
-      <TopBar />
+      <SongListTopBar />
       {songs.map((item, index) => {
-
-        return <ListItem key={index + item.title} index={index} checked={curIndex === index} data={item} change={change} />
+        return <ListItem key={item.id} index={index} checked={curIndex === index} data={item} change={change} />
       })}
     </div>
 

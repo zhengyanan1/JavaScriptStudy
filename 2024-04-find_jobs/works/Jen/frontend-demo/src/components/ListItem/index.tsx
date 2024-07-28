@@ -20,7 +20,7 @@ export const ListItem = (props: Props)=>{
 
   return (
     <div className={`${styles.root} ${checked ? styles['root--choosed']: ''}` } onClick={onClick}>
-        <span style={{flex: 3}}>{title}</span>
+        <span style={{flex: 3, color: checked ? 'orange': ''}}>{title}</span>
         <span style={{flex: 3}}>{artistName}</span>
         <span style={{flex: 3}}>{albumName}</span>
         <span style={{flex: 2}}>{duration}</span>
