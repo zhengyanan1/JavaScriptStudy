@@ -1,11 +1,12 @@
 
-import styles from './style.module.scss';
 import { SongInfo } from '../../typings/types';
 import { useEffect, useRef, useState } from 'react';
+import { Progress } from '../Progress';
 
 import iconPlay from './../../assets/icons/play.png';
 import iconPause from './../../assets/icons/pause.png'
-import { Progress } from '../Progress';
+import styles from './style.module.scss';
+
 
 
 interface Props {

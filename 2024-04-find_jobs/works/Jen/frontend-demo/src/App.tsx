@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SongList } from './components/SongList';
 import { SongInfo } from './typings/types';
+import { SongPlayer } from './components/SongPlayer';
 
 import mp3Url1 from './assets/music/danxiaogui.m4a';
 import mp3Url2 from './assets/music/aiyaotandangdang.mp3';
 import mp3Url3 from './assets/music/iloveyoubaby.m4a';
 import mp3Url4 from './assets/music/allisyou.m4a';
-
-
 import './App.scss';
-import { SongPlayer } from './components/SongPlayer';
 
 
-const  songs: SongInfo[] = [
+
+const songs: SongInfo[] = [
   {
     title: '胆小鬼',
     artistName: '梁咏琪',
